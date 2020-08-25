@@ -22,9 +22,6 @@ const s = StyleSheet.create({
   form: {
     marginTop: 20,
   },
-  inputContainer: {
-    marginLeft: 20,
-  },
   inputLabel: {
     fontWeight: "bold",
   },
@@ -33,10 +30,10 @@ const s = StyleSheet.create({
   },
 });
 
-const CVC_INPUT_WIDTH = 70;
+const CVC_INPUT_WIDTH = 150;
 const EXPIRY_INPUT_WIDTH = CVC_INPUT_WIDTH;
-const CARD_NUMBER_INPUT_WIDTH_OFFSET = 40;
-const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width - EXPIRY_INPUT_WIDTH - CARD_NUMBER_INPUT_WIDTH_OFFSET;
+const CARD_NUMBER_INPUT_WIDTH_OFFSET = 0;
+const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width;
 const NAME_INPUT_WIDTH = CARD_NUMBER_INPUT_WIDTH;
 const PREVIOUS_FIELD_OFFSET = 40;
 const POSTAL_CODE_INPUT_WIDTH = 120;
@@ -70,14 +67,14 @@ export default class CreditCardInput extends Component {
   static defaultProps = {
     cardViewSize: {},
     labels: {
-      name: "CARDHOLDER'S NAME",
-      number: "CARD NUMBER",
-      expiry: "EXPIRY",
+      name: "Nome no cartão",
+      number: "Número do cartão",
+      expiry: "Vencimento",
       cvc: "CVC/CCV",
       postalCode: "POSTAL CODE",
     },
     placeholders: {
-      name: "Full Name",
+      name: "Nome no cartão",
       number: "1234 5678 1234 5678",
       expiry: "MM/YY",
       cvc: "CVC",
@@ -85,7 +82,7 @@ export default class CreditCardInput extends Component {
     },
     inputContainerStyle: {
       borderBottomWidth: 1,
-      borderBottomColor: "black",
+      borderBottomColor: "#DDDDDD",
     },
     validColor: "",
     invalidColor: "red",
@@ -161,7 +158,6 @@ export default class CreditCardInput extends Component {
           expiry={expiry}
           cvc={cvc} />
         <ScrollView ref="Form"
-          horizontal
           keyboardShouldPersistTaps="always"
           scrollEnabled={allowScroll}
           showsHorizontalScrollIndicator={false}
@@ -169,20 +165,34 @@ export default class CreditCardInput extends Component {
           <CCInput {...this._inputProps("number")}
             keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
-          <CCInput {...this._inputProps("expiry")}
-            keyboardType="numeric"
-            containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
-          { requiresCVC &&
-            <CCInput {...this._inputProps("cvc")}
-              keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
-          { requiresName &&
-            <CCInput {...this._inputProps("name")}
-              containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} /> }
-          { requiresPostalCode &&
-            <CCInput {...this._inputProps("postalCode")}
-              keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { width: POSTAL_CODE_INPUT_WIDTH }]} /> }
+          {requiresName &&
+            <View style={{ marginTop: 15, }}>
+              <CCInput {...this._inputProps("name")}
+                containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} />
+            </View>}
+          <View style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}>
+            {requiresCVC &&
+              <View style={{
+                flex: 0.45,
+                marginTop: 15,
+              }}>
+                <CCInput {...this._inputProps("cvc")}
+                  keyboardType="numeric"
+                  containerStyle={[s.inputContainer, inputContainerStyle]} />
+              </View>}
+            <View style={{
+              flex: 0.45,
+              marginTop: 15,
+            }}>
+              <CCInput {...this._inputProps("expiry")}
+                keyboardType="numeric"
+                containerStyle={[s.inputContainer, inputContainerStyle]} />
+            </View>
+          </View>
         </ScrollView>
       </View>
     );
