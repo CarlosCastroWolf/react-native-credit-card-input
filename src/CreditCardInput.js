@@ -175,6 +175,14 @@ export default class CreditCardInput extends Component {
             flexDirection: 'row',
             justifyContent: 'space-between'
           }}>
+            <View style={{
+              flex: 0.45,
+              marginTop: 15,
+            }}>
+              <CCInput {...this._inputProps("expiry")}
+                keyboardType="numeric"
+                containerStyle={[s.inputContainer, inputContainerStyle]} />
+            </View>
             {requiresCVC &&
               <View style={{
                 flex: 0.45,
@@ -184,14 +192,6 @@ export default class CreditCardInput extends Component {
                   keyboardType="numeric"
                   containerStyle={[s.inputContainer, inputContainerStyle]} />
               </View>}
-            <View style={{
-              flex: 0.45,
-              marginTop: 15,
-            }}>
-              <CCInput {...this._inputProps("expiry")}
-                keyboardType="numeric"
-                containerStyle={[s.inputContainer, inputContainerStyle]} />
-            </View>
           </View>
         </ScrollView>
       </View>
