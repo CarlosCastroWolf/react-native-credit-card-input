@@ -69,7 +69,6 @@ export default class CCInput extends Component {
       additionalInputProps } = this.props;
     return (
       <TextInput
-        {...additionalInputProps}
         keyboardType={keyboardType}
         returnKeyType="next"
         autoCapitalise="words"
