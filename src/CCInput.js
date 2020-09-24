@@ -92,10 +92,8 @@ export default class CCInput extends Component {
         }}
         textColor={'#333333'}
         label={label}
-        refrance={this.props.field}
         rippleColor="transparent"
         value={value}
-        onFocus={this._onFocus}
         onChangeText={this._onChange}
         style={[
           ((validColor && status === "valid") ? { color: validColor } :
