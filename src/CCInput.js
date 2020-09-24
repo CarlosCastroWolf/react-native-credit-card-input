@@ -14,14 +14,6 @@ import {
   heightPercentageToDP as height,
 } from 'react-native-responsive-screen';
 
-const s = StyleSheet.create({
-  baseInputStyle: {
-    color: "black",
-    fontSize: app.fonts.media - 2,
-    marginTop: 10
-  },
-});
-
 export default class CCInput extends Component {
   static propTypes = {
     field: PropTypes.string.isRequired,
