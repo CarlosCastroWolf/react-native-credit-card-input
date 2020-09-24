@@ -60,8 +60,6 @@ export default class CCInput extends Component {
     if (status !== "valid" && newStatus === "valid") onBecomeValid(field);
   };
 
-  focus = () => this.refs.input.focus();
-
   _onFocus = () => this.props.onFocus(this.props.field);
   _onChange = value => this.props.onChange(this.props.field, value);
 
@@ -70,44 +68,41 @@ export default class CCInput extends Component {
       validColor, invalidColor,
       additionalInputProps } = this.props;
     return (
-      <View>
-        <TextInput
-          {...additionalInputProps}
-          keyboardType={keyboardType}
-          returnKeyType="next"
-          autoCapitalise="words"
-          autoCorrect={false}
-          labelActiveColor={'#929292'}
-          fontSize={height('2.8%')}
-          labelActiveTop={-height('4%')}
-          paddingBottom={4}
-          underlineActiveHeight={2}
-          labelFontSize={height('2.1%')}
-          containerMaxWidth={'100%'}
-          secureTextEntry={false}
-          underlineColor={'#DDDDDD'}
-          labelColor={'#929292'}
-          placeholderColor={'#8A8A8A'}
-          marginBottom={12}
-          marginTop={12}
-          labelTextStyle={{
-            fontFamily: Platform.OS === 'ios' ? 'SFProDisplay-Light' : 'SF-Pro-Display-Light',
-          }}
-          textColor={'#333333'}
-          label={label}
-          rippleColor="transparent"
-          refrance={this.refs.input}
-          value={value}
-          placeholder={placeholder}
-          onFocus={this._onFocus}
-          onChangeText={this._onChange}
-          style={[
-            ((validColor && status === "valid") ? { color: validColor } :
-              (invalidColor && status === "invalid") ? { color: invalidColor } :
-                {}),
-          ]}
-        />
-      </View>
+      <TextInput
+        {...additionalInputProps}
+        keyboardType={keyboardType}
+        returnKeyType="next"
+        autoCapitalise="words"
+        autoCorrect={false}
+        labelActiveColor={'#929292'}
+        fontSize={height('2.8%')}
+        labelActiveTop={-height('4%')}
+        paddingBottom={4}
+        underlineActiveHeight={2}
+        labelFontSize={height('2.1%')}
+        containerMaxWidth={'100%'}
+        secureTextEntry={false}
+        underlineColor={'#DDDDDD'}
+        labelColor={'#929292'}
+        placeholderColor={'#8A8A8A'}
+        marginBottom={12}
+        marginTop={12}
+        labelTextStyle={{
+          fontFamily: Platform.OS === 'ios' ? 'SFProDisplay-Light' : 'SF-Pro-Display-Light',
+        }}
+        textColor={'#333333'}
+        label={label}
+        rippleColor="transparent"
+        refrance={this.refs.input}
+        value={value}
+        onFocus={this._onFocus}
+        onChangeText={this._onChange}
+        style={[
+          ((validColor && status === "valid") ? { color: validColor } :
+            (invalidColor && status === "invalid") ? { color: invalidColor } :
+              {}),
+        ]}
+      />
     );
   }
 }
