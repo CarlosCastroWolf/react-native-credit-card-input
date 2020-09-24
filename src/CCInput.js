@@ -60,11 +60,11 @@ export default class CCInput extends Component {
     if (status !== "valid" && newStatus === "valid") onBecomeValid(field);
   };
 
-  _onFocus = () => this.props.onFocus(field);
-  _onChange = value => this.props.onChange(field, value);
+  _onFocus = () => this.props.onFocus(this.props.field);
+  _onChange = value => this.props.onChange(this.props.field, value);
 
   render() {
-    const { label, value, placeholder, status, keyboardType,
+    const { label, value, status, keyboardType,
       validColor, invalidColor,
       additionalInputProps } = this.props;
     return (
@@ -92,6 +92,7 @@ export default class CCInput extends Component {
         }}
         textColor={'#333333'}
         label={label}
+        refrance={this.props.field}
         rippleColor="transparent"
         value={value}
         onFocus={this._onFocus}
