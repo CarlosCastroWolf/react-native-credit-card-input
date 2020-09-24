@@ -102,7 +102,6 @@ export default class CardView extends Component {
       expiry: "••/••",
       cvc: "•••",
     },
-
     scale: 1,
     fontFamily: Platform.select({ ios: "Courier", android: "monospace" }),
     imageFront: require("../images/card-front.png"),
@@ -119,6 +118,7 @@ export default class CardView extends Component {
     const shouldFlip = !isAmex && focused === "cvc";
 
     const containerSize = { ...BASE_SIZE, height: BASE_SIZE.height * scale };
+
     const transform = {
       transform: [
         { scale },

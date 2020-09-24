@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import app from '../../../src/apps/index'
 import {
   View,
   Text,
@@ -8,8 +7,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   ViewPropTypes,
+  Platform
 } from "react-native";
-import Fontes from "../../../src/utils/Fontes";
+import TextInput from 'react-native-textinput-with-icons';
+import {
+  widthPercentageToDP as width,
+  heightPercentageToDP as height,
+} from 'react-native-responsive-screen';
 
 const s = StyleSheet.create({
   baseInputStyle: {
@@ -72,34 +76,47 @@ export default class CCInput extends Component {
 
   render() {
     const { label, value, placeholder, status, keyboardType,
-      containerStyle, inputStyle, labelStyle,
-      validColor, invalidColor, placeholderColor,
+      validColor, invalidColor,
       additionalInputProps } = this.props;
     return (
-      <TouchableOpacity onPress={this.focus}
-        activeOpacity={0.99}>
-        <View style={[containerStyle]}>
-          {!!label && <Text style={[{ fontSize: app.fonts.pequena, fontFamily: Fontes.REGULAR }]}>{label}</Text>}
-          <TextInput ref="input"
-            {...additionalInputProps}
-            keyboardType={keyboardType}
-            autoCapitalise="words"
-            autoCorrect={false}
-            style={[
-              s.baseInputStyle,
-              inputStyle,
-              ((validColor && status === "valid") ? { color: validColor } :
-                (invalidColor && status === "invalid") ? { color: invalidColor } :
-                  {}),
-            ]}
-            underlineColorAndroid={"transparent"}
-            placeholderTextColor={placeholderColor}
-            placeholder={placeholder}
-            value={value}
-            onFocus={this._onFocus}
-            onChangeText={this._onChange} />
-        </View>
-      </TouchableOpacity>
+      <View>
+        <TextInput
+          {...additionalInputProps}
+          keyboardType={keyboardType}
+          returnKeyType="next"
+          autoCapitalise="words"
+          autoCorrect={false}
+          labelActiveColor={'#929292'}
+          fontSize={height('2.8%')}
+          labelActiveTop={-height('4%')}
+          paddingBottom={4}
+          underlineActiveHeight={2}
+          labelFontSize={height('2.1%')}
+          containerMaxWidth={'100%'}
+          secureTextEntry={false}
+          underlineColor={'#DDDDDD'}
+          labelColor={'#929292'}
+          placeholderColor={'#8A8A8A'}
+          marginBottom={12}
+          marginTop={12}
+          labelTextStyle={{
+            fontFamily: Platform.OS === 'ios' ? 'SFProDisplay-Light' : 'SF-Pro-Display-Light',
+          }}
+          textColor={'#333333'}
+          label={label}
+          rippleColor="transparent"
+          refrance={this.refs.input}
+          value={value}
+          placeholder={placeholder}
+          onFocus={this._onFocus}
+          onChangeText={this._onChange}
+          style={[
+            ((validColor && status === "valid") ? { color: validColor } :
+              (invalidColor && status === "invalid") ? { color: invalidColor } :
+                {}),
+          ]}
+        />
+      </View>
     );
   }
 }

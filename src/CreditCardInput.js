@@ -20,7 +20,7 @@ const s = StyleSheet.create({
     alignItems: "center",
   },
   form: {
-    marginTop: 20,
+    marginTop: 5,
   },
   inputLabel: {
     fontWeight: "bold",
