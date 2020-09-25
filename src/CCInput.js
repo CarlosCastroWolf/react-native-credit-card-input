@@ -59,8 +59,6 @@ export default class CCInput extends Component {
     if (value !== "" && newValue === "") onBecomeEmpty(field);
     if (status !== "valid" && newStatus === "valid") onBecomeValid(field);
   };
-
-  _onFocus = () => this.props.onFocus(this.props.field);
   _onChange = value => this.props.onChange(this.props.field, value);
 
   render() {

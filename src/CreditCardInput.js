@@ -129,9 +129,7 @@ export default class CreditCardInput extends Component {
       placeholder: placeholders[field],
       value: values[field],
       status: status[field],
-
-      onFocus, onChange, onBecomeEmpty, onBecomeValid,
-
+      onChange,
       additionalInputProps: additionalInputsProps[field],
     };
   };
