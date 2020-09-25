@@ -166,7 +166,7 @@ export default class CreditCardInput extends Component {
             keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
           {requiresName &&
-            <View style={{ marginTop: 15, }}>
+            <View style={{ marginTop: 5, }}>
               <CCInput {...this._inputProps("name")}
                 containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} />
             </View>}
@@ -177,7 +177,7 @@ export default class CreditCardInput extends Component {
           }}>
             <View style={{
               flex: 0.45,
-              marginTop: 15,
+              marginTop: 5,
             }}>
               <CCInput {...this._inputProps("expiry")}
                 keyboardType="numeric"
@@ -186,7 +186,7 @@ export default class CreditCardInput extends Component {
             {requiresCVC &&
               <View style={{
                 flex: 0.45,
-                marginTop: 15,
+                marginTop: 5,
               }}>
                 <CCInput {...this._inputProps("cvc")}
                   keyboardType="numeric"
