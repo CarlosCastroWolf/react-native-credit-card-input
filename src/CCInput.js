@@ -76,6 +76,7 @@ export default class CCInput extends Component {
         labelActiveColor={'#929292'}
         fontSize={height('2.8%')}
         labelActiveTop={-height('4%')}
+        underlineActiveColor={this.props.placeholderColor}
         paddingBottom={4}
         underlineActiveHeight={2}
         labelFontSize={height('2.1%')}
@@ -94,11 +95,6 @@ export default class CCInput extends Component {
         rippleColor="transparent"
         value={value}
         onChangeText={this._onChange}
-        style={[
-          ((validColor && status === "valid") ? { color: validColor } :
-            (invalidColor && status === "invalid") ? { color: invalidColor } :
-              {}),
-        ]}
       />
     );
   }
